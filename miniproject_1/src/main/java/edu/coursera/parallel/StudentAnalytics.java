@@ -1,14 +1,18 @@
 package edu.coursera.parallel;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summarizingInt;
 
 /**
  * A simple wrapper class for various analytics methods.
@@ -108,12 +112,14 @@ public final class StudentAnalytics {
      */
     public String mostCommonFirstNameOfInactiveStudentsParallelStream(
             final Student[] studentArray) {
-       Arrays.stream(studentArray)
-               .parallel()
-               .filter(s-> !s.checkIsCurrent())
-               .map(Student::getFirstName);
-//               .collect(groupingBy(Function.identity(), (s->1), (Integer o, Integer n)-> o+n));
-        throw new UnsupportedOperationException();
+        Map<String, Integer> map = Arrays.stream(studentArray)
+                .parallel()
+                .filter(s -> !s.checkIsCurrent())
+                .map(Student::getFirstName)
+                .collect(Collectors.toMap(Function.identity(), s -> 1, (o, n) -> o + 1));
+
+        Comparator<Map.Entry<String, Integer>> comparator = Map.Entry.comparingByValue();
+        return map.entrySet().stream().sorted(Collections.reverseOrder(comparator)).findFirst().get().getKey();
     }
 
     /**
