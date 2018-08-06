@@ -2,6 +2,10 @@ package edu.coursera.parallel;
 
 import java.util.concurrent.Phaser;
 
+import static edu.rice.pcdp.PCDP.forall;
+import static edu.rice.pcdp.PCDP.forall2dChunked;
+import static edu.rice.pcdp.PCDP.forallChunked;
+
 /**
  * Wrapper class for implementing one-dimensional iterative averaging using
  * phasers.
