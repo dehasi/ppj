@@ -114,6 +114,6 @@ public final class OneDimAveragingPhaser {
     public static void runParallelFuzzyBarrier(final int iterations,
             final double[] myNew, final double[] myVal, final int n,
             final int tasks) {
-
+        runParallelBarrier(iterations, myNew, myVal,n,tasks);
     }
 }
