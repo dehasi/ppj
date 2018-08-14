@@ -179,7 +179,7 @@ public final class CoarseLists {
         @Override
         boolean remove(final Integer object) {
             try {
-
+                readWriteLock.writeLock().lock();
                 Entry pred = this.head;
                 Entry curr = pred.next;
 
