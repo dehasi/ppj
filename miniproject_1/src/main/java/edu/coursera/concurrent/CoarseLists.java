@@ -149,7 +149,7 @@ public final class CoarseLists {
         @Override
         boolean add(final Integer object) {
             try {
-               readWriteLock.writeLock().lock();
+                readWriteLock.writeLock().lock();
                 Entry pred = this.head;
                 Entry curr = pred.next;
 
@@ -166,7 +166,7 @@ public final class CoarseLists {
                     pred.next = entry;
                     return true;
                 }
-            }finally {
+            } finally {
                 readWriteLock.writeLock().unlock();
             }
         }
@@ -194,7 +194,7 @@ public final class CoarseLists {
                 } else {
                     return false;
                 }
-            }finally {
+            } finally {
                 readWriteLock.writeLock().unlock();
             }
         }
