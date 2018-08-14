@@ -133,8 +133,6 @@ public final class CoarseLists {
          * implementing the concurrent add, remove, and contains methods below.
          */
         ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-        Lock read = readWriteLock.readLock();
-        Lock write = readWriteLock.writeLock();
 
         /**
          * Default constructor.
@@ -218,7 +216,6 @@ public final class CoarseLists {
                     pred = curr;
                     curr = curr.next;
                 }
-                write.unlock();
                 return object.equals(curr.object);
             } finally {
                 readWriteLock.readLock().unlock();
