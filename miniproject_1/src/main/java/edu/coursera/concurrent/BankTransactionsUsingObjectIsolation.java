@@ -1,7 +1,6 @@
 package edu.coursera.concurrent;
 
 import static edu.rice.pcdp.PCDP.isolated;
-
 /**
  * A thread-safe transaction implementation using object-based isolation.
  */
@@ -19,6 +18,8 @@ public final class BankTransactionsUsingObjectIsolation
          * BankTransactionsUsingGlobalIsolation. Keep in mind that isolation
          * must be applied to both src and dst.
          */
-        throw new UnsupportedOperationException();
+        isolated(src, dst,() -> {
+            src.performTransfer(amount, dst);
+        });
     }
 }
