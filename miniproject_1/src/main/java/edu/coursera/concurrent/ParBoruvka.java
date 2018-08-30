@@ -29,9 +29,9 @@ public final class ParBoruvka extends AbstractBoruvka<ParBoruvka.ParComponent> {
     public void computeBoruvka(final Queue<ParComponent> nodesLoaded,
                                final SolutionToBoruvka<ParComponent> solution) {
 
-        ParComponent node ;
-        while (( node = nodesLoaded.poll()) != null) {
-            if (!node.lock.tryLock())  continue;
+        ParComponent node;
+        while ((node = nodesLoaded.poll()) != null) {
+            if (!node.lock.tryLock()) continue;
             if (node.isDead) {
                 node.lock.unlock();
                 continue;
@@ -46,7 +46,7 @@ public final class ParBoruvka extends AbstractBoruvka<ParBoruvka.ParComponent> {
                 nodesLoaded.add(node);
                 continue;
             }
-            if(other.isDead) {
+            if (other.isDead) {
                 nodesLoaded.add(node);
                 node.lock.unlock();
                 other.lock.unlock();
@@ -58,7 +58,8 @@ public final class ParBoruvka extends AbstractBoruvka<ParBoruvka.ParComponent> {
             node.lock.unlock();
             nodesLoaded.add(node);
         }
-        solution.setSolution(node);
+        if (node != null)
+            solution.setSolution(node);
     }
 
     /**
