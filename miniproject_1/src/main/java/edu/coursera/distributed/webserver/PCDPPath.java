@@ -1,4 +1,4 @@
-package edu.coursera.distributed;
+package edu.coursera.distributed.webserver;
 
 /**
  * Class for storing the absolute path to a file as separate path

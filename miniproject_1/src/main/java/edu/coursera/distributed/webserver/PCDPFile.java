@@ -1,4 +1,4 @@
-package edu.coursera.distributed;
+package edu.coursera.distributed.webserver;
 
 /**
  * Representation of a file node in the virtual filesystem.

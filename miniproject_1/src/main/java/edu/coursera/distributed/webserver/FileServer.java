@@ -1,4 +1,4 @@
-package edu.coursera.distributed;
+package edu.coursera.distributed.webserver;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

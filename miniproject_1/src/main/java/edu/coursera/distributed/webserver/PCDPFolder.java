@@ -1,4 +1,4 @@
-package edu.coursera.distributed;
+package edu.coursera.distributed.webserver;
 
 import java.util.Map;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package edu.coursera.distributed;
+package edu.coursera.distributed.webserver;
 
 /**
  * Represents an object in the simulated filesystem, either a file or

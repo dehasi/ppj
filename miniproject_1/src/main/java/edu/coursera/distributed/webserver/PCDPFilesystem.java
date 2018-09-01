@@ -1,8 +1,4 @@
-package edu.coursera.distributed;
-
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
+package edu.coursera.distributed.webserver;
 
 /**
  * A class to represent a virtual, in-memory filesystem. PCDPFilesystem exposes
