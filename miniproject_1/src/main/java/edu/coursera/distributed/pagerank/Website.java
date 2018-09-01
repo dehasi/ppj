@@ -1,4 +1,4 @@
-package edu.coursera.distributed;
+package edu.coursera.distributed.pagerank;
 
 import java.util.LinkedList;
 import java.util.Iterator;

@@ -1,5 +1,7 @@
-package edu.coursera.distributed;
+package edu.coursera.distributed.pagerank;
 
+import edu.coursera.distributed.pagerank.PageRank;
+import edu.coursera.distributed.pagerank.Website;
 import scala.Tuple2;
 
 import java.util.Random;
@@ -15,7 +17,6 @@ import org.apache.log4j.Level;
 import junit.framework.TestCase;
 
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 
