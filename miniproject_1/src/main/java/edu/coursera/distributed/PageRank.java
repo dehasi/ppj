@@ -1,7 +1,7 @@
 package edu.coursera.distributed;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import org.apache.spark.api.java.JavaPairRDD;
 import scala.Tuple2;
@@ -41,26 +41,23 @@ public final class PageRank {
         final JavaPairRDD<Integer, Website> sites,
         final JavaPairRDD<Integer, Double> ranks) {
 
-        JavaPairRDD<Integer, Double> newRanks =
-            sites.join(ranks)
-                .flatMapToPair(kv -> {
-                    Integer websiteId = kv._1;
-                    Tuple2<Website, Double> value = kv._2;
-                    Website edges = value._1;
-                    Double currentRank = value._2;
-                    List<Tuple2<Integer, Double>> contribs =
-                        new LinkedList<>();
+        JavaPairRDD<Integer, Tuple2<Website, Double>> join = sites.join(ranks);
 
-                    Iterator<Integer> iterator = edges.edgeIterator();
-                    double rankTodst = currentRank / (double)edges.getNEdges();
-                    while (iterator.hasNext()) {
-                        final int target = iterator.next();
-                        contribs.add(new Tuple2<>(target, rankTodst));
-                    }
-                    return contribs;
-                });
+        JavaPairRDD<Integer, Double> contributions = join.flatMapToPair(kv -> {
+            Website website = kv._2._1;
+            Double rank = kv._2._2;
+            Double rankConribution = rank / website.getNEdges();
+            List<Tuple2<Integer, Double>> result = new ArrayList<>(2000);
+            Iterator<Integer> iterator = website.edgeIterator();
+            while (iterator.hasNext()) {
+                int target = iterator.next();
+                result.add(new Tuple2<>(target, rankConribution));
+            }
+            return result;
+        });
 
-        return newRanks.reduceByKey((r1, r2) -> r1 + r2)
-            .mapValues(v -> 0.15 + 0.85 * v);
+        return contributions.reduceByKey((cortrib1, contrib2) -> cortrib1 + contrib2)
+            .mapValues(v -> .15 + .85 * v);
+
     }
 }
