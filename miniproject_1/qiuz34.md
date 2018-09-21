@@ -39,19 +39,19 @@ Which of the operations in the algorithm have to ensure that the concurrent acce
 [] None, the implementation does not have to worry about concurrency
 [FALSE] All of them: A, B, C and D have to ensure a safe concurrent thread access
 [] A and C
-[] Only C
+[FALSE] Only C
 
 5. Which of the following is not a valid MPI mode?
 
 [] Funneled
 [] Multiple
-[] Single
+[x] Single
 [FALSE] Serialized
 
 6. I have a program with threads T_0, T_1, T_2 and T_3. I want to make all communications to the MPI go through T_0.
 Which of the MPI modes would I want to use?
 
-[?] Funneled
+[x] Funneled
 [] Multiple
 [] Single
 [] Serialized
@@ -93,7 +93,7 @@ B,C
 
 [] An advantage of the actor model is the ability of the actor to specify when to receive data.
 [] A polling model where the consumer requests items periodically reduces delays in receiving information.
-[?] In reactive programming, producers propagate events to subscribers to trigger reactions.
+[x] In reactive programming, producers propagate events to subscribers to trigger reactions.
 [] In reactive programming, the subscriber has no way to specify how frequently it will receive data. 
  
 10. What is the expected output of the following piece of Java-based pseudocode?
@@ -112,4 +112,4 @@ pub.submit(3);
 pub.submit(30);
 ```
 
-. 3, 30, -- FALSE
+D. 3, 33,
